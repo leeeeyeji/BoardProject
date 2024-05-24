@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>게시글 상세보기</title>
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #ffffff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+    .post-details {
+      border: 1px solid #dee2e6;
+      padding: 20px;
+      background-color: #f8f9fa;
+    }
+    .post-details p {
+      margin: 10px 0;
+    }
+    .post-details a {
+      margin-right: 10px;
+      text-decoration: none;
+      color: #007bff;
+    }
+    .post-details a:hover {
+      color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1 th:text="${board.title}">제목</h1>
+  </header>
+  <main>
+    <div class="post-details">
+      <p><strong>Name:</strong> <span th:text="${board.name}">작성자</span></p>
+      <p><strong>Content:</strong> <span th:text="${board.content}">내용</span></p>
+      <p><strong>Created At:</strong> <span th:text="${#temporals.format(board.createdAt, 'yyyy/MM/dd HH:mm')}">2024/05/11 12:34</span></p>
+      <p>
+        <a href="/list">List</a>
+        <a th:href="@{/updateform(id=${board.id})}">Edit</a>
+        <a th:href="@{/deleteform(id=${board.id})}">Delete</a>
+      </p>
+    </div>
+  </main>
+</div>
+</body>
+</html>
